@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verdade e Desafio</title>
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Lilita+One&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Squada+One&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Lilita+One&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Squada+One&display=swap" rel="stylesheet">
+</head>
+<style>
+  dialog {
+    background-color: transparent;
+    border: none;
+    color: white;
+    outline: none;
+    width: 100%;
+    height: 100vh;
+  }
+
+  dialog:focus {
+    outline: none;
+  }
+</style>
+
+<body>
+  <div id="podio"></div>
+
+  <div id="can" style="box-shadow: none;">
+  </div>
+  <dialog id="local" style="box-shadow: none;">
+    <fieldset class="game-rules">
+      <legend>Regras de jogo:</legend>
+      <div class="rule-option">
+        <label class="custom-checkbox">
+          <input type="checkbox" name="adult" id="adult-questions" class="checkbox">
+          <span class="custom-checkmark"></span>
+          Perguntas Adultas?
+        </label>
+      </div>
+      <div class="rule-option">
+        <label class="custom-checkbox">
+          <input type="checkbox" name="mandatory" id="mandatory-challenges" class="checkbox">
+          <span class="custom-checkmark"></span>
+          3 Vezes Desafio Obrigatório?
+        </label>
+      </div>
+      <div class="rule-option">
+        <label class="custom-checkbox">
+          <input type="checkbox" name="variable" id="variable-percentage" class="checkbox">
+          <span class="custom-checkmark"></span>
+          Chance Variável?
+        </label>
+      </div>
+      <div class="rule-option">
+        <label class="custom-checkbox">
+          <input type="checkbox" name="pnt" id="pnt" class="checkbox">
+          <span class="custom-checkmark"></span>
+          Manter Pontuação da partida anterior?
+        </label>
+      </div>
+      <div class="rule-option">
+        <label class="custom-checkbox">
+          <input type="checkbox" name="cla" id="cla" class="checkbox">
+          <span class="custom-checkmark"></span>
+          Tabela de Classificação?
+        </label>
+      </div>
+    </fieldset>
+
+    <br><br>
+    <fieldset style="background-color: #1e1e1e;">
+      <legend>Jogadores:</legend>
+      <input id="playerName" placeholder="Nome do jogador" style="margin: 0 2% 0 0; width:50%;">
+      <button onclick="add()" style="width: 25%;text-align:center; padding: 10px 5px 10px 5px;">Adicionar</button>
+      <br><br>
+      <p id="ErroList"><b class="erro"></b><br></p>
+      <div id="playerList">Nenhum Jogador</div>
+      <button onclick="play()" style="width:100%;">Jogar</button>
+    </fieldset>
+  </dialog>
+
+  <dialog id="Cores">
+    <div class="EcColor">
+      <h2 style="text-align: center;" id="N-escolha"> </h2>
+      <div class="Ecolor">
+        <div id="cores-container">
+        </div>
+      </div>
+      <button onclick="CorD(true);">Escolher Cor</button>
+    </div>
+  </dialog>
+
+  <script src="variaveis.js"></script>
+  <script src="adicionar.js"></script>
+  <script>
+
+
+
+    document.getElementById("local").showModal();
+    carregarVariaveis();
+    updatePlayerList();
+    Jogando = false;
+    setInterval(() => {
+      if (Jogando == false) {
+        document.getElementById("adult-questions").addEventListener('change', () => {
+          PerguntasAdultas = document.getElementById("adult-questions").checked;
+          salvarVariaveis();
+        });
+
+        document.getElementById("mandatory-challenges").addEventListener('change', () => {
+          Maisde3DesafioObrigatorio = document.getElementById("mandatory-challenges").checked;
+          salvarVariaveis();
+        });
+
+        document.getElementById("variable-percentage").addEventListener('change', () => {
+          PorcentagemVariavel = document.getElementById("variable-percentage").checked;
+
+          salvarVariaveis();
+        });
+        document.getElementById("pnt").addEventListener('change', () => {
+          PontosAnterior = document.getElementById("pnt").checked;
+          salvarVariaveis();
+        });
+        document.getElementById("cla").addEventListener('change', () => {
+          Classif = document.getElementById("cla").checked;
+          salvarVariaveis();
+        });
+
+      }
+      else {
+        let Ordem = data.map(item => ({
+          Total: item.Pontos - item.AntPontos,
+          Nome: item.name
+        }));
+        Ordem.sort((a, b) => {
+          if (b.Total !== a.Total) {
+            return b.Total - a.Total;
+          }
+          return a.Nome.localeCompare(b.Nome);
+        });
+
+        var txtP = "";
+        txtP += `
+      <tr>
+          <td>${Ordem[0].Nome}</td>
+          <td>${Ordem[0].Total * 100}</td>
+        </tr>
+        <tr>
+          <td>${Ordem[1].Nome}</td>
+          <td>${Ordem[1].Total * 100}</td>
+        </tr>
+        `
+        if (Ordem.length >= 3) {
+          txtP += `
+        <tr>
+          <td>${Ordem[2].Nome}</td>
+          <td>${Ordem[2].Total * 100}</td>
+        </tr>
+        `
+        }
+
+        document.getElementById("tabP").innerHTML = txtP;
+      }
+    }, 500)
+  </script>
+  <script src="escolher.js"></script>
+  <script src="perguntar.js"></script>
+</body>
+
+</html>

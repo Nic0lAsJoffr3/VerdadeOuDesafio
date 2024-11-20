@@ -1,0 +1,319 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    color: #e0e0e0;
+    background-color: #E6A248;
+    font-family: Arial, sans-serif;
+    background-image: url('IMG/chao.jpg');
+    background-repeat: repeat;
+    background-position: top left;
+    background-size: 500px 500px;
+    overflow: hidden;
+  }
+
+*{ 
+   
+  font-family: Arial, Helvetica, sans-serif;
+}
+  canvas {
+    cursor: pointer;
+    background-image: url('IMG/mesa.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 600px 600px;
+    transform: scale(1.5);
+
+  }
+
+  .jg {
+    width: 100%;
+  }
+
+  fieldset {
+    border: none;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: transparent;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  legend {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    padding: 0 10px;
+    background-color: #333;
+    border-radius: 5px;
+  }
+
+  input,
+  button {
+    font-size: 16px;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    transition: background-color 0.3s ease;
+    background-color: #333;
+    color: #fff;
+  }
+
+  input {
+    width: 80%;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #555;
+  }
+
+
+  input:focus,
+  button:focus {
+    border-color: #888;
+    outline: none;
+  }
+
+  p {
+    text-align: center;
+    font-size: 20px;
+  }
+
+  #local {
+    position: absolute;
+    z-index: 999;
+  }
+
+  /*Area das perguntas: */
+  .Vod .pergunta {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .Vod .botoes {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .Vod .botao {
+    flex: 1;
+    padding: 15px;
+    margin: 0 10px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+
+  .Vod {
+    background-color: #1e1e1e;
+  }
+
+
+  .Vod .botao.desistir {
+    background-color: #f44336;
+  }
+
+  @media (max-width: 600px) {
+    .Vod .botoes {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .Vod .botao {
+      margin: 10px 0;
+    }
+  }
+
+  /*Area do Verd ou Desa*/
+  .VD button {
+    margin: 0px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .VD .ale {
+    background-color: transparent;
+    border: none;
+  }
+
+  .VD {
+    background-color: #1e1e1e;
+  }
+  /*Redimencionando a area das perguntas*/
+  .Vod{
+    
+    transform: scale(0.8);
+  }
+  .VD{
+  animation: animE 1s forwards;
+  }
+  @keyframes animE {
+    0%{
+      transform: scale(0.5);
+    }
+    100%{
+      transform: scale(1);
+    }
+  }
+  .erro{
+    color: #ff4242;
+    font-size: 14px;
+  }
+
+ 
+
+
+  
+  legend {
+    color: #fff;
+    font-weight: bold;
+  }
+  .game-rules{
+    background-color: #1e1e1e;
+    border: 1px solid #444;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  .rule-option {
+    margin-bottom: 15px;
+  }
+  
+  .custom-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .custom-checkbox input[type="checkbox"] {
+    display: none; 
+  }
+  
+  .custom-checkbox .custom-checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #888;
+    border-radius: 4px;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .custom-checkbox input[type="checkbox"]:checked + .custom-checkmark {
+    background-color: #f73838;
+    border-color: #bb1818;
+  }
+  
+  .custom-checkbox input[type="checkbox"]:checked + .custom-checkmark::after {
+    content: "X";
+    color: #fff;
+    font-size: 14px;
+  }
+  
+  .custom-checkbox:hover .custom-checkmark {
+    border-color: #ec1616;
+  }
+  ::selection{
+    background-color: transparent;
+    color:#ec1616;
+  }
+  
+  .btn-dell{
+    background-color: red; 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+    width:30px;
+    height:30px; 
+    text-align:center; 
+    margin:0px; 
+    padding:0px;
+    margin: 0 0  0 calc(100% - 100px);
+    transform: translate(50px,-30px);
+  }
+  #playerList{
+  margin: 0 0 0 50px;
+   text-align: left; 
+   font-size: 20px; 
+  }
+.quadcolor{
+  border: 2px solid #000000;
+  box-shadow: 0px 0px 3px rgba(255, 255, 255, 0.548);
+  border-radius: 5px;
+  transform: translate(-40px,23px);
+  background-color: white;
+  width: 30px;
+  height: 20px;
+}
+
+#cores-container{
+  background-color: #1e1e1e;
+  padding: 0;
+  margin: 0;
+}.Ecolor {
+  display: flex;               
+  justify-content: center;     
+  text-align: center;          
+}
+.EcColor{
+  background-color: #272727ee;
+  padding: 4px 4px 10px 4px;
+  border-radius: 10px;
+}
+.EcColor button{
+  margin: 15px 0 0 0;
+  width: 100%;
+}
+.EcColor button:active{
+  margin: 15px 0 0 0;
+  width: 100%;
+}.podio {
+  background-color: #1e1e1e54; 
+  color: #fdfdfd;
+  text-align: center;
+  top: 0;
+  width: 80%;
+  margin: 0 10%; 
+  padding: 20px; 
+  position: absolute;
+  border-radius: 8px; 
+}
+
+.podio h1 {
+  font-family: "Sour Gummy", sans-serif;
+  font-size: 17px;
+  margin-bottom: 20px; 
+}
+
+.podio table {
+  font-family: "Sour Gummy", sans-serif;
+  width: 100%;
+  border-collapse: collapse; 
+  margin-top: 10px;
+}
+
+.podio th, .podio td {
+  font-family: "Sour Gummy", sans-serif;
+  font-size: 14px;
+  padding: 10px;
+  text-align: center;
+}
+
