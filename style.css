@@ -1,5 +1,7 @@
 body {
+
     display: flex;
+
     justify-content: center;
     align-items: center;
     margin: 0;
@@ -218,22 +220,22 @@ body {
   }
   
   .custom-checkbox input[type="checkbox"]:checked + .custom-checkmark {
-    background-color: #f73838;
-    border-color: #bb1818;
+    background-color: #4FF738;
+    border-color: #18BB46;
   }
   
   .custom-checkbox input[type="checkbox"]:checked + .custom-checkmark::after {
-    content: "X";
+    content: "✓";
     color: #fff;
     font-size: 14px;
   }
   
   .custom-checkbox:hover .custom-checkmark {
-    border-color: #ec1616;
+    border-color: #1AAE0F;
   }
   ::selection{
     background-color: transparent;
-    color:#ec1616;
+    color:#16EC1F;
   }
   
   .btn-dell{
@@ -316,4 +318,5 @@ body {
   padding: 10px;
   text-align: center;
 }
+
 
