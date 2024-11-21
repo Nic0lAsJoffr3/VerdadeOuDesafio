@@ -102,12 +102,14 @@ body {
   }
 
   .Vod .botoes {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px; 
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
-  }
+}
+
 
   .Vod .botao {
     flex: 1;
@@ -131,6 +133,20 @@ body {
     background-color: #f44336;
   }
 
+  .Vod .botao.pular {
+    opacity: .9;
+    background-color: #a1a1a1ce;
+    font-size: 14px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  .Vod .botao.novaP {
+    opacity: .9;
+    background-color: #a1a1a1ce;
+    font-size: 14px;
+    border-radius: 10px;
+    padding: 10px;
+  }
   @media (max-width: 600px) {
     .Vod .botoes {
       flex-direction: column;
@@ -196,18 +212,18 @@ body {
     margin-bottom: 15px;
   }
   
-  .custom-checkbox {
+  .custom-checkbox, .custom-checkboxA {
     display: flex;
     align-items: center;
     cursor: pointer;
     position: relative;
   }
   
-  .custom-checkbox input[type="checkbox"] {
+  .custom-checkbox input[type="checkbox"] , .custom-checkboxA input[type="checkbox"]{
     display: none; 
   }
   
-  .custom-checkbox .custom-checkmark {
+  .custom-checkbox .custom-checkmark ,.custom-checkboxA .custom-checkmarkA{
     width: 20px;
     height: 20px;
     border: 2px solid #888;
@@ -220,22 +236,33 @@ body {
   }
   
   .custom-checkbox input[type="checkbox"]:checked + .custom-checkmark {
-    background-color: #4FF738;
+    background-color: #31c21e;
     border-color: #18BB46;
   }
-  
+  .custom-checkboxA input[type="checkbox"]:checked + .custom-checkmarkA {
+    background-color: #8d3cad;
+    border-color: #732e8f;
+  }
+  .custom-checkboxA input[type="checkbox"]:checked + .custom-checkmarkA::after {
+    content: "?";
+    color: #faf2ff;
+    font-size: 20px;
+  }
   .custom-checkbox input[type="checkbox"]:checked + .custom-checkmark::after {
     content: "✓";
-    color: #fff;
-    font-size: 14px;
+    color: #ffffff;
+    font-size: 20px;
   }
   
+  .custom-checkboxA:hover .custom-checkmark {
+    border-color: #ae0f93;
+  }
   .custom-checkbox:hover .custom-checkmark {
     border-color: #1AAE0F;
   }
   ::selection{
     background-color: transparent;
-    color:#16EC1F;
+    color:#ec1616;
   }
   
   .btn-dell{
@@ -287,7 +314,8 @@ body {
 .EcColor button:active{
   margin: 15px 0 0 0;
   width: 100%;
-}.podio {
+}
+.podio {
   background-color: #1e1e1e54; 
   color: #fdfdfd;
   text-align: center;
@@ -296,26 +324,32 @@ body {
   margin: 0 10%; 
   padding: 20px; 
   position: absolute;
-  border-radius: 8px; 
+  border-radius: 8px;
+  max-height: 200px;
+  overflow: hidden; 
 }
 
+
 .podio h1 {
+  text-shadow: 1px 1px 3px black;
   font-family: "Sour Gummy", sans-serif;
   font-size: 17px;
   margin-bottom: 20px; 
 }
 
 .podio table {
+  text-shadow: 1px 1px 3px black;
+
   font-family: "Sour Gummy", sans-serif;
   width: 100%;
   border-collapse: collapse; 
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .podio th, .podio td {
   font-family: "Sour Gummy", sans-serif;
   font-size: 14px;
-  padding: 10px;
+  padding: 5px;
   text-align: center;
 }
 
