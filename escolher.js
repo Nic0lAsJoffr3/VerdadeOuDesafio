@@ -138,7 +138,7 @@ function jogar() {
         const selectedIndex = data.findIndex(player => player.name === selectedName);
         if (selectedIndex !== -1) {
           if (PorcentagemVariavel == true) {
-            PontosRetirados = Math.round((Math.random() * 1) + 1) / (Math.floor(Math.random() * 4) + 4);
+            PontosRetirados = Math.round((Math.random() * 2) + 1);
             data[selectedIndex].percentage -= PontosRetirados;
             let remainingPlayers = data.length - 1;
 
