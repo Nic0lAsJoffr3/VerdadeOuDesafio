@@ -42,7 +42,7 @@ function Pergunta(Name0, Index0) {
 }
 }
 function Verdade() {
-  if(PerguntasAdultas == true ? Math.random() < 0.5 ? true : false : true){
+  if(PerguntasAdultas == true ? Math.random() < 0.25 ? true : false : true){
   const perguntaAleatoria = verdade.filter((verdade, index) => !verdadesUsadas.includes(index))
     .map(verdade => {
       return verdade
@@ -101,7 +101,7 @@ if (perguntaAleatoria.length > 0) {
 }
 
 function Desafio(obg = false) {
-  if(PerguntasAdultas == true ? Math.random() < 0.5 ? true : false : true){
+  if(PerguntasAdultas == true ? Math.random() < 0.2 ? true : false : true){
   const desafioAleatorio = desafio.filter((d, index) => !desafiosUsados.includes(index))
     .map(d => {
       return d
@@ -111,7 +111,7 @@ function Desafio(obg = false) {
         .replace(/{jogadores1}/, getRandomJogador(Name, 1))
         .replace(/{jogadores2}/, getRandomJogador(Name, 2))
         .replace(/{jogadores3}/, getRandomJogador(Name, 3))
-        .replace(/{jogadores4}/, getRandomJogador(Name, 4))
+        .replace(/{jogadores4}/, getRandomJogador(Name, 4)) 
         .replace(/{letras}/, letras[Math.floor(Math.random() * letras.length)])
         .replace(/{numeros}/, numeros[Math.floor(Math.random() * numeros.length)])
         .replace(/{profissoes}/, profissoes[Math.floor(Math.random() * profissoes.length)])
