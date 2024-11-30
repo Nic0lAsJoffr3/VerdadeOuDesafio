@@ -1,5 +1,6 @@
 let pointerAngle = 0;
 
+var quantJogadores = 0;
 // Carregar a música
 const audio = new Audio('Sons/rodar.mp3');
 audio.loop = true; // A música vai tocar em loop
@@ -21,7 +22,7 @@ function jogar() {
   const centerY = canvas.height / 2;
   const radius = 100;
   let isSpinning = false;
-
+  quantJogadores = data.length;
   function drawWheel() {
     let currentAngle = 0;
     data.forEach((item) => {
@@ -39,11 +40,13 @@ function jogar() {
       const textY = centerY + (radius / 1.5) * Math.sin(textAngle);
   
       ctx.shadowColor = "black";
-      ctx.shadowBlur = 4; 
-      ctx.shadowOffsetX = 2; 
-      ctx.shadowOffsetY = 2; 
+      
+      ctx.shadowBlur = 3; 
+      ctx.shadowOffsetX = 0; 
+      ctx.shadowOffsetY = 0; 
       ctx.fillStyle = "white";
-      ctx.font = "16px Playfair Display";
+      ctx.font = "20px Playfair Display";
+    
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillText(item.name, textX, textY);

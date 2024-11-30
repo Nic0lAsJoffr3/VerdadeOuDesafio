@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Verdade e Desafio</title>
+  <link rel="shortcut icon" href="IMG/icon.png" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,7 +49,7 @@
 </style>
 
 <body>
-  <div id="podio" ></div>
+  <div id="podio"></div>
 
   <div id="can" style="box-shadow: none;">
   </div>
@@ -60,6 +61,15 @@
           <input type="checkbox" name="adult" id="adult-questions" class="checkbox">
           <span class="custom-checkmarkA"></span>
           Perguntas Adultas?
+          <label class="range-adL"><input min="5" max="100" step="5" value="25" type="range" class="range-ad"
+              list="porcent" id="PerAdRange"> <i id="PerAd"></i>
+            <datalist id="porcent">
+              <option value="5" label="5%"></option>
+              <option value="25" label="25%"></option>
+              <option value="50" label="50%"></option>
+              <option value="75" label="75%"></option>
+              <option value="100" label="100%"></option>
+            </datalist></label>
         </label>
       </div>
       <div class="rule-option">
@@ -104,6 +114,21 @@
           Botões de Pular / Nova Pergunta?
         </label>
       </div>
+      <br><br>
+      <h3 style="text-align: left; font-size:13px;">Aleatoriedade:</h3>
+      <label class="aleatRangeLabel">
+         <br><i id="ARI1"></i><br>
+         <input type="range" min="0" max="100" value="50" class="aleatRange" id="AleId" list="porcent-Ale">
+         <br><br><i id="ARI2"></i><br>
+      
+        <datalist id="porcent-Ale">
+          <option value="5" label="5%"></option>
+          <option value="25" label="25%"></option>
+          <option value="50" label="50%"></option>
+          <option value="75" label="75%"></option>
+          <option value="100" label="100%"></option>
+        </datalist>
+      </label><br><br><br>
     </fieldset>
 
     <br><br>
@@ -142,6 +167,7 @@
     Jogando = false;
     setInterval(() => {
       if (Jogando == false) {
+
         document.getElementById("adult-questions").addEventListener('change', () => {
           PerguntasAdultas = document.getElementById("adult-questions").checked;
           salvarVariaveis();
@@ -173,6 +199,14 @@
           PularENPerg = document.getElementById("Pul").checked;
           salvarVariaveis();
         });
+        document.getElementById("PerAdRange").addEventListener('change', () => {
+          PerguntasAdultasCh = document.getElementById("PerAdRange").value / 100;
+          salvarVariaveis();
+        });
+        document.getElementById("AleId").addEventListener('change', () => {
+          Aleatorio0ch = document.getElementById("AleId").value / 100;
+          salvarVariaveis();
+        });
 
       }
       else {
@@ -188,7 +222,7 @@
         });
 
         var txtP = "";
-        for (i = 0; i < Ordem.length;i++) {
+        for (i = 0; i < Ordem.length; i++) {
           txtP += `
       <tr>
           <td>${Ordem[i].Nome}</td>
@@ -199,6 +233,21 @@
         document.getElementById("tabP").innerHTML = txtP;
       }
     }, 500)
+    setInterval(() => {
+      if (Jogando == false) {
+        document.getElementById("ARI1").innerText = "Verdade "+document.getElementById("AleId").value+"%";
+        document.getElementById("ARI2").innerText = "Desafio "+Math.abs(document.getElementById("AleId").value-100)+"%";
+
+        if (PerguntasAdultas == false) {
+          document.querySelector("#PerAdRange").style.display = "none";   
+          document.getElementById("PerAd").innerText = "";
+        } else {
+          document.querySelector("#PerAdRange").style.display = "inline-block"; 
+          document.getElementById("PerAd").innerText = document.getElementById("PerAdRange").value + "%";
+        }
+      }
+    }, 100);  
+    
   </script>
   <script src="JS/escolher.js"></script>
   <script src="JS/perguntar.js"></script>

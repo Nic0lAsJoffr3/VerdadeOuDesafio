@@ -8,6 +8,7 @@ var desafiosUsados = [];
 var verdadesUsadas = [];
 var verdadeAUsadas = [];
 var desafioAUsados = [];
+var jogador;
 function salvarPerguntas() {
   localStorage.setItem("verdadesUsadas", JSON.stringify(verdadesUsadas));
   localStorage.setItem("desafiosUsados", JSON.stringify(desafiosUsados));
@@ -28,12 +29,8 @@ function carregarPerguntas() {
 }
 
 
-var jogadoresValidos = data.filter(jogador => jogador.name !== Name);
-var jogadoresAleatorios = jogadoresValidos.sort(() => Math.random() - 0.5);
 function Pergunta(Name0, Index0) {
 
-  jogadoresValidos = data.filter(jogador => jogador.name !== Name);
-  jogadoresAleatorios = jogadoresValidos.sort(() => Math.random() - 0.5);
   document.getElementById("local").showModal();
   NovoIndex = Index0;
   if (NovoIndex == AntigoIndex) {
@@ -66,38 +63,43 @@ function Pergunta(Name0, Index0) {
     }
   }
 }
+
+
+
+
 function Verdade(iii = 0) {
 
-  if (PerguntasAdultas == true ? Math.random() < 0.25 ? true : false : true) {
 
-    const perguntaAleatoria = verdade.filter((v, index) => !verdadesUsadas.includes(index))
-      .map(v => {
-        return v
-          .replace(/{aleatoria}/, aleatoria[Math.floor(Math.random() * aleatoria.length)])
-          .replace(/{sentimentos}/, sentimentos[Math.floor(Math.random() * sentimentos.length)])
-          .replace(/{jogadores}/, getRandomJogador(Name, 0))
-          .replace(/{jogadores1}/, getRandomJogador(Name, 1))
-          .replace(/{jogadores2}/, getRandomJogador(Name, 2))
-          .replace(/{jogadores3}/, getRandomJogador(Name, 3))
-          .replace(/{jogadores4}/, getRandomJogador(Name, 4))
-          .replace(/{letras}/, letras[Math.floor(Math.random() * letras.length)])
-          .replace(/{numeros}/, numeros[Math.floor(Math.random() * numeros.length)])
-          .replace(/{profissoes}/, profissoes[Math.floor(Math.random() * profissoes.length)])
-          .replace(/{adjetivos}/, adjetivos[Math.floor(Math.random() * adjetivos.length)]);
-      });
+  jogadoresValidos = data.filter(jogador => jogador.name !== Name);
+  jogadoresAleatorios = jogadoresValidos.sort(() => Math.random() - 0.5);
+  if (PerguntasAdultas == true ? Math.random() < Math.abs(PerguntasAdultasCh -1) ? true : false : true) {
+
+    const perguntaAleatoria = verdade.filter((verdade, index) => !verdadesUsadas.includes(index))
+
 
     if (perguntaAleatoria.length > 0) {
-      const perguntaEscolhida = perguntaAleatoria[Math.floor(Math.random() * perguntaAleatoria.length)];
+      var perguntaEscolhida = perguntaAleatoria[Math.floor(Math.random() * perguntaAleatoria.length)];
       const indexPergunta = verdade.indexOf(perguntaEscolhida);
       if (indexPergunta == -1) {
-        if (iii > 5) {
-          verdadesUsadas = [];
-        }
-        Verdade(iii + 1);
+
+        verdadesUsadas = [];
+
       } else {
+        perguntaEscolhida = perguntaEscolhida
+        .replace(/{aleatoria}/, aleatoria[Math.floor(Math.random() * aleatoria.length)])
+        .replace(/{sentimentos}/, sentimentos[Math.floor(Math.random() * sentimentos.length)])
+        .replace(/{jogadores}/, getRandomJogador(Name, 0))
+        .replace(/{jogadores1}/, getRandomJogador(Name, 1))
+        .replace(/{jogadores2}/, getRandomJogador(Name, 2))
+        .replace(/{jogadores3}/, getRandomJogador(Name, 3))
+        .replace(/{jogadores4}/, getRandomJogador(Name, 4))
+        .replace(/{letras}/, letras[Math.floor(Math.random() * letras.length)])
+        .replace(/{numeros}/, numeros[Math.floor(Math.random() * numeros.length)])
+        .replace(/{profissoes}/, profissoes[Math.floor(Math.random() * profissoes.length)])
+        .replace(/{adjetivos}/, adjetivos[Math.floor(Math.random() * adjetivos.length)]);
         verdadesUsadas.push(indexPergunta);
         salvarPerguntas();
-        EscreverPergunta(perguntaEscolhida, 0);
+        EscreverPergunta(perguntaEscolhida, 0,false,false);
       }
     } else {
 
@@ -107,36 +109,33 @@ function Verdade(iii = 0) {
     }
   }
   else {
-    const perguntaAleatoria = verdadeA.filter((va, index) => !verdadeAUsadas.includes(index))
-      .map(va => {
-        return va
-          .replace(/{aleatoria}/, aleatoria[Math.floor(Math.random() * aleatoria.length)])
-          .replace(/{sentimentos}/, sentimentos[Math.floor(Math.random() * sentimentos.length)])
-          .replace(/{jogadores}/, getRandomJogador(Name, 0))
-          .replace(/{jogadores1}/, getRandomJogador(Name, 1))
-          .replace(/{jogadores2}/, getRandomJogador(Name, 2))
-          .replace(/{jogadores3}/, getRandomJogador(Name, 3))
-          .replace(/{jogadores4}/, getRandomJogador(Name, 4))
-          .replace(/{letras}/, letras[Math.floor(Math.random() * letras.length)])
-          .replace(/{numeros}/, numeros[Math.floor(Math.random() * numeros.length)])
-          .replace(/{profissoes}/, profissoes[Math.floor(Math.random() * profissoes.length)])
-          .replace(/{adjetivos}/, adjetivos[Math.floor(Math.random() * adjetivos.length)]);
-      });
+    const perguntaAleatoria = verdadeA.filter((verdadeA, index) => !verdadeAUsadas.includes(index))
+      
 
     if (perguntaAleatoria.length > 0) {
-      const perguntaEscolhidaA = perguntaAleatoria[Math.floor(Math.random() * perguntaAleatoria.length)];
+      var perguntaEscolhidaA = perguntaAleatoria[Math.floor(Math.random() * perguntaAleatoria.length)];
       const indexPerguntaA = verdadeA.indexOf(perguntaEscolhidaA);
       if (indexPerguntaA == -1) {
 
-        if (iii > 5) {
-          verdadeAUsadas = [];
-        }
-        Verdade(iii + 1);
+        verdadeAUsadas = [];
+
       }
       else {
+        perguntaEscolhidaA = perguntaEscolhidaA
+        .replace(/{aleatoria}/, aleatoria[Math.floor(Math.random() * aleatoria.length)])
+        .replace(/{sentimentos}/, sentimentos[Math.floor(Math.random() * sentimentos.length)])
+        .replace(/{jogadores}/, getRandomJogador(Name, 0))
+        .replace(/{jogadores1}/, getRandomJogador(Name, 1))
+        .replace(/{jogadores2}/, getRandomJogador(Name, 2))
+        .replace(/{jogadores3}/, getRandomJogador(Name, 3))
+        .replace(/{jogadores4}/, getRandomJogador(Name, 4))
+        .replace(/{letras}/, letras[Math.floor(Math.random() * letras.length)])
+        .replace(/{numeros}/, numeros[Math.floor(Math.random() * numeros.length)])
+        .replace(/{profissoes}/, profissoes[Math.floor(Math.random() * profissoes.length)])
+        .replace(/{adjetivos}/, adjetivos[Math.floor(Math.random() * adjetivos.length)]);
         verdadeAUsadas.push(indexPerguntaA);
         salvarPerguntas();
-        EscreverPergunta(perguntaEscolhidaA, 0);
+        EscreverPergunta(perguntaEscolhidaA, 0,false,true);
       }
     } else {
 
@@ -146,12 +145,24 @@ function Verdade(iii = 0) {
     }
   }
 }
-
 function Desafio(obg = false, iii = 0) {
-  if (PerguntasAdultas == true ? Math.random() < 0.2 ? true : false : true) {
-    const desafioAleatorio = desafio.filter((d, index) => !desafiosUsados.includes(index))
-      .map(d => {
-        return d
+
+
+  jogadoresValidos = data.filter(jogador => jogador.name !== Name);
+  jogadoresAleatorios = jogadoresValidos.sort(() => Math.random() - 0.5);
+  if (PerguntasAdultas == true ? Math.random() < Math.abs(PerguntasAdultasCh -1) ? true : false : true) {
+    const desafioAleatorio = desafio.filter((desafio, index) => !desafiosUsados.includes(index))
+
+    if (desafioAleatorio.length > 0) {
+      var desafioEscolhido = desafioAleatorio[Math.floor(Math.random() * desafioAleatorio.length)];
+      const indexDesafio = desafio.indexOf(desafioEscolhido);
+      if (indexDesafio == -1) {
+
+        desafiosUsados = [];
+
+      }
+      else {
+        desafioEscolhido = desafioEscolhido
           .replace(/{aleatoria}/, aleatoria[Math.floor(Math.random() * aleatoria.length)])
           .replace(/{sentimentos}/, sentimentos[Math.floor(Math.random() * sentimentos.length)])
           .replace(/{jogadores}/, getRandomJogador(Name, 0))
@@ -163,21 +174,9 @@ function Desafio(obg = false, iii = 0) {
           .replace(/{numeros}/, numeros[Math.floor(Math.random() * numeros.length)])
           .replace(/{profissoes}/, profissoes[Math.floor(Math.random() * profissoes.length)])
           .replace(/{adjetivos}/, adjetivos[Math.floor(Math.random() * adjetivos.length)]);
-      });
-    if (desafioAleatorio.length > 0) {
-      const desafioEscolhido = desafioAleatorio[Math.floor(Math.random() * desafioAleatorio.length)];
-      const indexDesafio = desafio.indexOf(desafioEscolhido);
-      if (indexDesafio == -1) {
-        if(iii >  5){
-
-          desafiosUsados = [];
-        }
-        Desafio(obg, iii + 1);
-      }
-      else {
         desafiosUsados.push(indexDesafio);
         salvarPerguntas();
-        EscreverPergunta(desafioEscolhido, 1, obg);
+        EscreverPergunta(desafioEscolhido, 1, obg,false);
       }
     } else {
 
@@ -187,9 +186,17 @@ function Desafio(obg = false, iii = 0) {
     }
   }
   else {
-    const desafioAleatorio = desafioA.filter((da, index) => !desafioAUsados.includes(index))
-      .map(da => {
-        return da
+    const desafioAleatorio = desafioA.filter((desafioA, index) => !desafioAUsados.includes(index))
+    if (desafioAleatorio.length > 0) {
+      var desafioEscolhidoA = desafioAleatorio[Math.floor(Math.random() * desafioAleatorio.length)];
+      const indexDesafioA = desafioA.indexOf(desafioEscolhidoA);
+      if (indexDesafioA == -1) {
+        desafioAUsados = [];
+      }
+      else {
+        desafioAUsados.push(indexDesafioA);
+        salvarPerguntas();
+        desafioEscolhidoA = desafioEscolhidoA
           .replace(/{aleatoria}/, aleatoria[Math.floor(Math.random() * aleatoria.length)])
           .replace(/{sentimentos}/, sentimentos[Math.floor(Math.random() * sentimentos.length)])
           .replace(/{jogadores}/, getRandomJogador(Name, 0))
@@ -201,21 +208,8 @@ function Desafio(obg = false, iii = 0) {
           .replace(/{numeros}/, numeros[Math.floor(Math.random() * numeros.length)])
           .replace(/{profissoes}/, profissoes[Math.floor(Math.random() * profissoes.length)])
           .replace(/{adjetivos}/, adjetivos[Math.floor(Math.random() * adjetivos.length)]);
-      });
-    if (desafioAleatorio.length > 0) {
-      const desafioEscolhidoA = desafioAleatorio[Math.floor(Math.random() * desafioAleatorio.length)];
-      const indexDesafioA = desafioA.indexOf(desafioEscolhidoA);
-      if (indexDesafioA == -1) {
-        if(iii >  5){
 
-          desafioAUsados = [];
-        }
-        Desafio(obg, iii + 1);
-      }
-      else {
-        desafioAUsados.push(indexDesafioA);
-        salvarPerguntas();
-        EscreverPergunta(desafioEscolhidoA, 1, obg);
+        EscreverPergunta(desafioEscolhidoA, 1, obg,true);
       }
     } else {
 
@@ -225,14 +219,19 @@ function Desafio(obg = false, iii = 0) {
     }
   }
 }
+
+
+
+
 function Aleatorio() {
-  const aleatorio = Math.random() < 0.5 ? Verdade : Desafio;
+  const aleatorio = Math.random() < Aleatorio0ch ? Verdade : Desafio;
   aleatorio();
 }
 
 function getRandomJogador(N, indice) {
+  if(indice+2 <= quantJogadores){
   if (jogadoresValidos.length > 0) {
-    let jogador;
+
     do {
       if (indice >= jogadoresAleatorios.length) {
         jogador = jogadoresAleatorios[jogadoresAleatorios.length - 1];
@@ -246,16 +245,21 @@ function getRandomJogador(N, indice) {
   } else {
     return "Alguem dessa mesa";
   }
+  }
+  else{
+    return "você";
+  }
 }
 
 
 
-function EscreverPergunta(perguntaa, tipo, obg = false) {
+
+function EscreverPergunta(perguntaa, tipo, obg = false,adl = false) {
   LocalPerg = "";
   LocalPerg += `
     <fieldset class="Vod">
     <legend style="font-size:28px;">${Name}</legend>
-    <h1>${tipo == 0 ? "Verdade" : obg == true ? "Desafio <br><b style='font-size:14px;'>(3 veses seguidas!)</b>" : "Desafio"}</h1>
+    <h1>${(tipo == 0 ? "Verdade" : obg == true ? "Desafio <br><b style='font-size:14px;'>(3 veses seguidas!)</b>" : "Desafio")}${adl == true?"!":"."}</h1>
       <div class="pergunta">${perguntaa}</div>
       <div class="botoes">
         <button class="botao" onclick="concluido()">Concluído</button>

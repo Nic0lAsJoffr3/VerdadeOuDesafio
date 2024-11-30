@@ -1,34 +1,71 @@
 const cores = [
-  "#db0f0f",
-  "#9b2252",
-  "#1815e0",
-  "#e2c718",
-  "#32c87d",
-  "#fc78ad",
-  "#880606",
-  "#5f5def",
-  "#0f6876",
-  "#b75af2",
-  "#121089",
-  "#65daec",
-  "#0f801c",
-  "#988616",
-  "#d77e19",
-  "#875012",
-  "#1ad12f",
-  "#ff7575",
-  "#681c97",
-  "#1cc8e3",
-  "#e51568",
-  "#decc59",
-  "#fc74ad",
-  "#32c87d",
-  "#ffff6f"
+  "#440000",
+  "#9c3939",
+  "#970000",
+  "#d70000",
+  "#ff5b5b",
+
+  "#8f4900",
+  "#af6c28",
+  "#c46400",
+  "#ff8a10",
+  "#ffbd7a",
+
+  "#747900",
+  "#9ea248",
+  "#adb500",
+  "#dee700",
+  "#f8fe6e",
+
+  "#0b4200",
+  "#126d00",
+  "#1aa000",
+  "#2dda0b",
+  "#8fff7a",
+
+  "#004440",
+  "#287e79",
+  "#00958c",
+  "#00d5c8",
+  "#5afff5",
+
+  "#00002b",
+  "#01006d",
+  "#0100de",
+  "#4f4eff",
+  "#807fff",
+
+  "#2c006d",
+  "#3f029a",
+  "#5c0dd1",
+  "#6335a8",
+  "#944cff",
+
+  "#260025",
+  "#660063",
+  "#a600a2",
+  "#f80cf3",
+  "#fa5af7",
+
+
+  "#000000",
+  "#202020",
+  "#2d2d2d",
+  "#3e3e3e",
+  "#4a4a4a",
+
+  "#7a7a7a",
+  "#959595",
+  "#adadad",
+  "#dadada",
+  "#fafafa",
 ];
 
 
 //Variaveis de controle
 var data = [];
+PerguntasAdultasCh = 0.25;
+Aleatorio0ch = 0.25;
 PerguntasAdultas = false;
 Maisde3DesafioObrigatorio = false;
 PorcentagemVariavel = true;
@@ -94,8 +131,8 @@ let letras = [
 
 
 let numeros = [];
-while (numeros.length < 500) {
-  const numero = Math.floor(Math.random() * 999) + 1;
+while (numeros.length < 20) {
+  const numero = Math.floor(Math.random() * 20);
   if (!numeros.includes(numero)) {
     numeros.push(numero);
   }
@@ -124,7 +161,7 @@ function salvarVariaveis() {
     AntPontos: item.AntPontos
   }));
   localStorage.setItem('data', JSON.stringify(dadosParaSalvar));
-  
+
 
   localStorage.setItem('PularENPerg', JSON.stringify(PularENPerg));
   localStorage.setItem('Aleatorio0', JSON.stringify(Aleatorio0));
@@ -133,6 +170,8 @@ function salvarVariaveis() {
   localStorage.setItem('PerguntasAdultas', JSON.stringify(PerguntasAdultas));
   localStorage.setItem('Maisde3DesafioObrigatorio', JSON.stringify(Maisde3DesafioObrigatorio));
   localStorage.setItem('PorcentagemVariavel', JSON.stringify(PorcentagemVariavel));
+  localStorage.setItem('PerguntasAdultasCh', JSON.stringify(PerguntasAdultasCh));
+  localStorage.setItem('Aleatorio0ch', JSON.stringify(Aleatorio0ch));
 }
 
 function carregarVariaveis() {
@@ -145,14 +184,16 @@ function carregarVariaveis() {
     Pontos: parseInt(item.Pontos, 10) || 0,
     AntPontos: parseInt(item.AntPontos, 10) || 0
   }));
-  
+
   PularENPerg = JSON.parse(localStorage.getItem('PularENPerg')) || false;
   Aleatorio0 = JSON.parse(localStorage.getItem('Aleatorio0')) || false;
-  Classif = JSON.parse(localStorage.getItem('Classif')) || false;
+  Classif = JSON.parse(localStorage.getItem('Classif')) || true;
   PontosAnterior = JSON.parse(localStorage.getItem('PontosAnterior')) || false;
   PerguntasAdultas = JSON.parse(localStorage.getItem('PerguntasAdultas')) || false;
   Maisde3DesafioObrigatorio = JSON.parse(localStorage.getItem('Maisde3DesafioObrigatorio')) || false;
-  PorcentagemVariavel = JSON.parse(localStorage.getItem('PorcentagemVariavel')) || false;
+  PorcentagemVariavel = JSON.parse(localStorage.getItem('PorcentagemVariavel')) || true;
+  PerguntasAdultasCh = parseFloat(localStorage.getItem('PerguntasAdultasCh')) || 0.25;
+  Aleatorio0ch = parseFloat(localStorage.getItem('Aleatorio0ch')) || 0.5;
 
   document.getElementById("Pul").checked = PularENPerg;
   document.getElementById("Ale").checked = Aleatorio0;
@@ -161,4 +202,6 @@ function carregarVariaveis() {
   document.getElementById("mandatory-challenges").checked = Maisde3DesafioObrigatorio;
   document.getElementById("variable-percentage").checked = PorcentagemVariavel;
   document.getElementById("pnt").checked = PontosAnterior;
+  document.getElementById("PerAdRange").value = PerguntasAdultasCh*100;
+  document.getElementById("AleId").value = Aleatorio0ch*100;
 }
